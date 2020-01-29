@@ -1,6 +1,7 @@
 import datetime
-import openpyxl
 import os
+
+import openpyxl
 
 TIME_SPLIT_SHORTCUTS = 'time_split_shortcuts.xlsx'
 TIME_SPLIT_RECORDS = 'time_split_records.xlsx'
@@ -10,6 +11,7 @@ HOME = os.path.expanduser('~')
 
 TIME_SPLIT_SHORTCUTS_PATH = HOME + SEP + 'Documents' + SEP + TIME_SPLIT_SHORTCUTS
 TIME_SPLIT_RECORDS_PATH = HOME + SEP + 'Documents' + SEP + TIME_SPLIT_RECORDS
+
 
 def read_shortcurts():
     ''' Read shortcut list file into a dictionary.
@@ -73,7 +75,6 @@ def input_time_split():
             print('ERROR, the given shortcut is unknown.')
     else:
         set_task()
-
 
 
 if __name__ == '__main__':
