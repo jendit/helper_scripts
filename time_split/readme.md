@@ -11,11 +11,9 @@ The Excel-Documents need to be placed in the users Documents folder.
 * time_split_shortcuts.xlsx
 * time_split_records.xlsx
 
-Within the file *time_split_shortcuts.xlsx* the shortcuts can be defined like this:
-| shortcut      | task name     |
-| ------------- |:-------------:|
-| c             | common        |
-| n             | navi          |
+Within the file *time_split_shortcuts.xlsx*.
+
+See example_Documents or copy them to the users Documents folder and edit the shortcut file.
 
 ## Starting script for Windows
 For easier access a script can be created and put into a folder within PATH so it can be accessed by simply pressing [Win-Key] + [R] and then calling the script name.
