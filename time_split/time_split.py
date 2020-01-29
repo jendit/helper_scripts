@@ -1,6 +1,6 @@
-import os
-import openpyxl
 import datetime
+import openpyxl
+import os
 
 TIME_SPLIT_SHORTCUTS = 'time_split_shortcuts.xlsx'
 TIME_SPLIT_RECORDS = 'time_split_records.xlsx'
@@ -30,12 +30,6 @@ def read_shortcurts():
     wb.close()
     return sc
 
-# TODO
-'''
-Input dialog for the user with the following options:
-- type of input (e = end task, s = start task)
-- shortcut (shortcut to be used for task identification)
-'''
 
 def set_task(task_name = ''):
     ''' Write a task to the Excel-Document.
@@ -47,8 +41,7 @@ def set_task(task_name = ''):
     '''
     wb = openpyxl.load_workbook(TIME_SPLIT_RECORDS_PATH)
     sheet = wb.active
-    row_count = len(sheet['A'])
-    print(row_count)
+    row_count = len(sheet['A'])  # calculate the len by getting the first column as this one will always be filled
 
     last_end = sheet.cell(row = row_count, column = 3)
     if last_end.value == None:
@@ -62,11 +55,26 @@ def set_task(task_name = ''):
     wb.close()
 
 
+def input_time_split():
+    '''Input dialog for the user.
+
+    The dialog needs to get the shortcut of a task name to start a task.
+    If a previous task is not finished, it will be closed automatically.
+    If no shortcut for a task is provided, the last task in the list will be closed.
+    '''
+    print('Please provide a shortcut for a task (see >> time_split_shortcuts.xlsx << for reference).')
+    print('Or leave empty to just close the last active task.')
+    task_shortcut = input('Task: ')
+    if task_shortcut:
+        try:
+            shortcut_list = read_shortcurts()
+            set_task(shortcut_list[task_shortcut])
+        except KeyError:
+            print('ERROR, the given shortcut is unknown.')
+    else:
+        set_task()
+
+
 
 if __name__ == '__main__':
-    shortcut_list = read_shortcurts()
-    for k, v in shortcut_list.items():
-        print(k, v)
-    set_task()
-    # set_task(shortcut_list['a'])
-    pass
+    input_time_split()
